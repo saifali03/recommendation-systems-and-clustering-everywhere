@@ -93,7 +93,23 @@ def our_k_means_standard(k, data, essential_cols, eps=0.1, max_iterations=None):
     return data
 
 
-
+def compute_wcss(k, data, essential_cols):
+    """
+    Takes a dataframe and the number of clusters you chose and compute the WCSS (the sum
+    of the sum of squares between each point of a cluster and its center, for each center)
+    This is a helper function that is used for 2.3.2
+    """
+    wcss = 0
+    for cluster in data['cluster'].unique():
+        cluster_pts = data[data['cluster'] == cluster]
+        center = pd.DataFrame([cluster_pts.mean(numeric_only=True)])
+        dist = calculate_distances(center, cluster_pts, essential_cols)
+        wcss+= dist.sum()
+    return wcss
+   
+   
+   	
+   	
 
 # data = get_data_from_2_2(100)
 # our_k_means_adv(4, data, ['0', '1', '2'], eps=1, max_iterations=2)
