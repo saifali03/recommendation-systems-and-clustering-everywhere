@@ -80,13 +80,13 @@ def iterate_clustering(data, essential_cols, eps=0.1, max_iterations=None ):
         data['cluster'] = clusters
 
 
-def our_k_means_adv(k, data, essential_cols, eps=0.1, max_iterations=None):
+def our_k_means_adv_old(k, data, essential_cols, eps=0.1, max_iterations=None):
     data = data.copy()
     data['cluster'] = initialise_clusters_adv(k, data, essential_cols)
     iterate_clustering(data, essential_cols, eps=eps, max_iterations=max_iterations)
     return data
 
-def our_k_means_standard(k, data, essential_cols, eps=0.1, max_iterations=None):
+def our_k_means_standard_old(k, data, essential_cols, eps=0.1, max_iterations=None):
     data = data.copy()
     data['cluster'] = initialise_clusters_standard(k, data, essential_cols)
     iterate_clustering(data, essential_cols, eps=eps,  max_iterations=max_iterations)
